@@ -7,5 +7,5 @@ function openEnvelope() {
   setTimeout(() => {
     document.querySelector(".envelope-container").style.display = "none";
     content.classList.remove("hidden");
-  }, 1000);
+  }, 1200);
 }
