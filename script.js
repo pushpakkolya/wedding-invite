@@ -7,5 +7,8 @@ function openEnvelope() {
   setTimeout(() => {
     document.querySelector(".envelope-container").style.display = "none";
     content.classList.remove("hidden");
+
+    // soft scroll effect
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, 1200);
 }
