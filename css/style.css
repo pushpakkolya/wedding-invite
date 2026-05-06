@@ -1701,7 +1701,21 @@ form label {
 /* =========================================
    FINAL FIX: FLIPCLOCK → CLEAN LABELS (NO OVERLAP)
 ========================================= */
+.custom-labels {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-family: Sofia Sans Condensed;
+  text-transform: uppercase;
+}
 
+.custom-labels span {
+  width: 60px;
+  text-align: center;
+}
 /* Hide default FlipClock labels (the ones appearing behind) */
 .flip-clock-divider .flip-clock-label {
   display: none !important;
