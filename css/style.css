@@ -1511,21 +1511,21 @@ form label {
   transition: 0.5s;
   padding: 8px 20px;
 }
+
+
 .btn-default {
   background: rgba(255,255,255,0.15) !important;
-
   border: 1px solid rgba(255,255,255,0.3) !important;
-
   backdrop-filter: blur(8px);
-
   border-radius: 50px;
-
-  color: white !important;
-
+  color: #646464 !important;
   letter-spacing: 2px;
-
   padding: 14px 34px !important;
+  font-family: Sofia Sans Condensed;
+  font-weight: 600;
 }
+
+
 .btn.btn-md {
   padding: 8px 20px !important;
 }
