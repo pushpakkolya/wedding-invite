@@ -226,7 +226,7 @@
 		loaderPage();
 		counter();
 		counterWayPoint();
-			// Background Music
+	// Background Music
 	var music = document.getElementById("bg-music");
 	var musicBtn = document.getElementById("music-toggle");
 
@@ -234,31 +234,42 @@
 
 		music.volume = 0.35;
 
-		// autoplay immediately
+		// Attempt autoplay
 		var playPromise = music.play();
 
 		if (playPromise !== undefined) {
 
 			playPromise.then(function () {
 
-				// show pause icon since music is already playing
+				// autoplay worked
 				musicBtn.innerHTML = "🔊";
 
 			}).catch(function () {
 
-				// autoplay blocked by browser
+				// Mobile autoplay blocked
 				musicBtn.innerHTML = "♫";
 
-				document.addEventListener("click", function () {
+				// Play on first user interaction
+				var startMusic = function () {
+
 					music.play();
 					musicBtn.innerHTML = "🔊";
-				}, { once: true });
+
+					document.removeEventListener("click", startMusic);
+					document.removeEventListener("touchstart", startMusic);
+
+				};
+
+				document.addEventListener("click", startMusic);
+				document.addEventListener("touchstart", startMusic);
 
 			});
 		}
 
-		// toggle music
-		musicBtn.addEventListener("click", function () {
+		// Music toggle button
+		musicBtn.addEventListener("click", function (e) {
+
+			e.stopPropagation();
 
 			if (music.paused) {
 
