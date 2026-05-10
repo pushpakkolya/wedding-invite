@@ -226,65 +226,85 @@
 		loaderPage();
 		counter();
 		counterWayPoint();
-	// Background Music
-	var music = document.getElementById("bg-music");
-	var musicBtn = document.getElementById("music-toggle");
+// Background Music
+var music = document.getElementById("bg-music");
+var musicBtn = document.getElementById("music-toggle");
 
-	if (music) {
+if (music && musicBtn) {
 
-		music.volume = 0.35;
+	music.volume = 0.35;
 
-		// Attempt autoplay
-		var playPromise = music.play();
+	let musicStarted = false;
 
-		if (playPromise !== undefined) {
+	// Hide button initially
+	musicBtn.style.display = "none";
 
-			playPromise.then(function () {
+	// Function to start music
+	var startMusic = function () {
 
-				// autoplay worked
-				musicBtn.innerHTML = "🔊";
+		if (musicStarted) return;
 
-			}).catch(function () {
+		music.play().then(function () {
 
-				// Mobile autoplay blocked
-				musicBtn.innerHTML = "♫";
+			musicStarted = true;
 
-				// Play on first user interaction
-				var startMusic = function () {
+			// Show button after music starts
+			musicBtn.style.display = "flex";
+			musicBtn.innerHTML = "🔊";
 
-					music.play();
-					musicBtn.innerHTML = "🔊";
+		}).catch(function(err) {
 
-					document.removeEventListener("click", startMusic);
-					document.removeEventListener("touchstart", startMusic);
-
-				};
-
-				document.addEventListener("click", startMusic);
-				document.addEventListener("touchstart", startMusic);
-
-			});
-		}
-
-		// Music toggle button
-		musicBtn.addEventListener("click", function (e) {
-
-			e.stopPropagation();
-
-			if (music.paused) {
-
-				music.play();
-				musicBtn.innerHTML = "🔊";
-
-			} else {
-
-				music.pause();
-				musicBtn.innerHTML = "🔇";
-
-			}
+			console.log("Music blocked:", err);
 
 		});
-	}
+
+		// Remove listeners after first interaction
+		document.removeEventListener("scroll", startMusic);
+		document.removeEventListener("click", startMusic);
+		document.removeEventListener("touchstart", startMusic);
+
+	};
+
+	// Desktop autoplay attempt
+	music.play().then(function () {
+
+		musicStarted = true;
+
+		musicBtn.style.display = "flex";
+		musicBtn.innerHTML = "🔊";
+
+	}).catch(function () {
+
+		// Mobile browsers will block this
+		console.log("Autoplay blocked on mobile");
+
+	});
+
+	// Start on first interaction
+	document.addEventListener("scroll", startMusic, { passive: true });
+	document.addEventListener("click", startMusic);
+	document.addEventListener("touchstart", startMusic);
+
+	// Toggle button
+	musicBtn.addEventListener("click", function (e) {
+
+		e.stopPropagation();
+
+		if (music.paused) {
+
+			music.play();
+			musicBtn.innerHTML = "🔊";
+
+		} else {
+
+			music.pause();
+			musicBtn.innerHTML = "🔇";
+
+		}
+
+	});
+
+}
 	});
 
 
