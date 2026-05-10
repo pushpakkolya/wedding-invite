@@ -306,7 +306,12 @@ h1, h2, h3, h4, h5, h6, figure {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(147, 147, 147, 0.5);
+background:
+linear-gradient(
+  to bottom,
+  rgba(0,0,0,0.15),
+  rgba(0,0,0,0.35)
+);
 }
 .fh5co-cover > .fh5co-container {
   position: relative;
@@ -769,8 +774,36 @@ form label {
 }
 
 
+.hero-card {
+  display: inline-block;
+  padding: 30px 45px;
 
+  background: rgba(255, 255, 255, 0.08);
 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,0.15);
+
+  border-radius: 30px;
+
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.18);
+
+  max-width: 900px;
+}
+@keyframes slowZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+#fh5co-header {
+  animation: slowZoom 12s ease-in-out infinite alternate;
+}
 
 #fh5co-header .display-tc h2,
 #fh5co-counter .display-tc h2,
@@ -785,7 +818,19 @@ form label {
   text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
+.hero-divider {
+  width: 120px;
+  height: 2px;
+  margin: 18px auto;
 
+  background:
+  linear-gradient(
+    to right,
+    transparent,
+    rgba(255,255,255,0.9),
+    transparent
+  );
+}
 
 #fh5co-header .display-tc .btn,
 #fh5co-counter .display-tc .btn,
@@ -1465,6 +1510,21 @@ form label {
   -o-transition: 0.5s;
   transition: 0.5s;
   padding: 8px 20px;
+}
+.btn-default {
+  background: rgba(255,255,255,0.15) !important;
+
+  border: 1px solid rgba(255,255,255,0.3) !important;
+
+  backdrop-filter: blur(8px);
+
+  border-radius: 50px;
+
+  color: white !important;
+
+  letter-spacing: 2px;
+
+  padding: 14px 34px !important;
 }
 .btn.btn-md {
   padding: 8px 20px !important;
