@@ -1799,3 +1799,36 @@ form label {
   color: #fff;
   white-space: normal; 
 }
+
+#music-toggle {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+
+  width: 52px;
+  height: 52px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255,255,255,0.25);
+
+  background: rgba(255,255,255,0.12);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  color: white;
+  font-size: 20px;
+
+  cursor: pointer;
+
+  z-index: 9999;
+
+  transition: 0.3s ease;
+}
+
+#music-toggle:hover {
+  transform: scale(1.08);
+
+  background: rgba(255,255,255,0.2);
+}
